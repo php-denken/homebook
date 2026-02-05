@@ -20,16 +20,23 @@ su -
 
 git
 
+```
 apt-get install git-all
+```
 
 to authenticate towards github and so on
+
+```
 ssh-keygen -t ed25519 -C "your_email@example.com"
+```
 
 Clone this repo...
 
 ### Basic
 
+```
 apt install -y curl ca-certificates gnupg htop ufw
+```
 
 Configure basic firewall
 
@@ -40,7 +47,7 @@ ufw enable
 
 ### Docker
 
-
+```
 curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
 chmod a+r /etc/apt/keyrings/docker.asc
 tee /etc/apt/sources.list.d/docker.sources <<EOF
@@ -50,21 +57,27 @@ Suites: $(. /etc/os-release && echo "$VERSION_CODENAME")
 Components: stable
 Signed-By: /etc/apt/keyrings/docker.asc
 EOF
+```
 
+```
 apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 systemctl enable docker --now
 usermod -aG docker $USER
+```
 
 ## Setup services
 
 All should run docker based so we create subfolders for that
 
+```
 mkdir -p ~/docker
 
 cp /home/$GITFOLDER/homebook/docker/* ~/docker/
+```
 
 ### Monitoring for tasmota
 
+```
 cd ~/docker/monitoring/mosquitto
 docker compose up -d
 
@@ -72,7 +85,7 @@ docker network create monitoring
 
 cd ~/docker/monitoring/influxdb
 docker compose up -d
-
+```
 
 open
 http://localhost:8086
@@ -81,15 +94,21 @@ Organisation: home
 Bucket: power
 Keep user pw and token
 
+```
 cd ~/docker/monitoring/telegraf
 nano  telegraf.conf
+```
 
 Add token there
 
+```
 docker compose up -d
+```
 
+```
 cd ~/docker/monitoring/grafana
 docker compose up -d
+```
 
 http://localhost:3000
 
@@ -102,6 +121,21 @@ URL: http://influxdb:8086
 Organisation: home
 Token: INFLUX_TOKEN
 Default Bucket: power
+
+### System monitoring
+
+Create additional system bucket in influx
+
+```
+cd ~/docker/monitoring/telegraf-system
+nano  telegraf.conf
+```
+
+Add token there
+
+```
+docker compose up -d
+```
 
 
 ## Battery care for thinkpad

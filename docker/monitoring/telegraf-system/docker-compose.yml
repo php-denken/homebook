@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  telegraf:
+    image: telegraf:1.37
+    container_name: telegraf-system
+    restart: unless-stopped
+    environment:
+      INFLUX_TOKEN: <SYSTEM_TOKEN>
+    volumes:
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+    external: true
