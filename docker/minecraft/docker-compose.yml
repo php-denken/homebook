@@ -1,0 +1,53 @@
+services:
+  minecraft:
+    image: itzg/minecraft-server
+    container_name: minecraft
+    restart: unless-stopped
+
+    ports:
+      - "25565:25565"   # Minecraft Java
+      - "8123:8123"     # Dynmap Web
+      - "19132:19132/udp" # Bedrock (GeyserMC)
+    
+    volumes:
+      - ./data:/data
+
+    environment:
+      EULA: "TRUE"
+      TYPE: "PAPER"
+      VERSION: "LATEST"
+      MEMORY: "1G"
+
+      JVM_OPTS: >
+        -XX:+UseG1GC
+        -XX:+ParallelRefProcEnabled
+        -XX:MaxGCPauseMillis=200
+        -XX:+UnlockExperimentalVMOptions
+        -XX:+DisableExplicitGC
+        -XX:+AlwaysPreTouch
+        -XX:G1NewSizePercent=30
+        -XX:G1MaxNewSizePercent=40
+        -XX:G1HeapRegionSize=8M
+        -XX:G1ReservePercent=20
+        -XX:G1HeapWastePercent=5
+        -XX:G1MixedGCCountTarget=4
+        -XX:InitiatingHeapOccupancyPercent=15
+        -XX:G1MixedGCLiveThresholdPercent=90
+        -XX:G1RSetUpdatingPauseTimePercent=5
+        -XX:SurvivorRatio=32
+        -XX:+PerfDisableSharedMem
+        -XX:MaxTenuringThreshold=1
+
+      VIEW_DISTANCE: "5"
+      SIMULATION_DISTANCE: "3"
+
+      ENABLE_WHITELIST: "FALSE"
+      ONLINE_MODE: "TRUE"
+
+      # GeyserMC Config (Bedrock) - optional, kann später in config angepasst werden
+      GEYSER_FLOODGATE: "TRUE"   # Aktiviert Floodgate für Bedrock-Auth
+      GEYSER_PORT: "19132"       # UDP-Port für Bedrock
+      GEYSER_ADDRESS: "0.0.0.0"  # Lauscht auf allen Interfaces
+
+    tty: true
+    stdin_open: true

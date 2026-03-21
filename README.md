@@ -161,3 +161,62 @@ WantedBy=multi-user.target
 
 sudo systemctl enable battery-threshold.service
 sudo systemctl start battery-threshold.service
+
+## Suspend disable
+
+xfce ettings all off
+
+xfce4-power-manager-settings
+
+sudo nano /etc/systemd/logind.conf
+
+IdleAction=ignore
+IdleActionSec=0
+HandleLidSwitch=ignore
+
+sudo systemctl restart systemd-logind
+
+## Minecraft
+
+https://geysermc.org/download?project=floodgate
+
+load 
+
+Geyser‑Spigot.jar
+
+Floodgate‑Spigot.jar
+
+
+cp /home/FOO_BAR/Downloads/Geyser-Spigot.jar ./data/plugins/
+
+
+load
+
+Geyser‑Spigot.jar from
+https://geysermc.org/download
+
+Floodgate‑Spigot.jar from
+https://geysermc.org/download?project=floodgate
+
+and
+https://www.curseforge.com/minecraft/bukkit-plugins/dynmap/files/7460127
+https://www.spigotmc.org/resources/chunky.81534/
+https://www.spigotmc.org/resources/spark.57242/
+
+in the end the files
+
+ls ./data/plugins/
+Chunky-Bukkit-1.4.40.jar  Dynmap-3.8-spigot.jar  floodgate-spigot.jar  Geyser-Spigot.jar  spark-1.10.119-bukkit.jar
+
+ufw allow 25565/tcp
+ufw allow 19132/udp
+ufw allow 8123/tcp
+
+docker exec -it minecraft rcon-cli
+
+op PLAYER_NAME
+/dynmap pause
+/dynmap resume
+
+
+cp -r ~/Downloads/<WORLD> ./data/world
