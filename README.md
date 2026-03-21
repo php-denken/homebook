@@ -218,5 +218,41 @@ op PLAYER_NAME
 /dynmap pause
 /dynmap resume
 
+rm -rf ./data/world/
+cp -r /home/FOO_BAR/Downloads/CITY/* ./data/world/
+sudo chown -R 1000:1000 ./data/world
+rm -rf ./data/world/players
 
 cp -r ~/Downloads/<WORLD> ./data/world
+
+# Pihole
+
+I had to use native 53 ports
+docker pot forwarding was not working for me
+
+cd pihole
+
+nano docker-compose.yml
+#change PW
+
+sudo ufw allow 53/tcp
+sudo ufw allow 53/udp
+sudo ufw allow 8083/tcp
+
+sudo ufw status
+
+docker compose up -d
+
+Fritzbox
+
+Internet → Zugangsdaten → DNS-Server
+
+set homeserver ip as dns and alterntive dns
+
+192.168.XXX.XXX
+
+set no 1.1.1.1 or 9.9.9.9 as alternative dns so no way arround the pihole exists
+
+Heimnetz → Netzwerk → Netzwerkeinstellungen → IP-Adressen → IPv4-Einstellungen
+
+DHCP-Server aktivieren

@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    restart: unless-stopped
+    network_mode: "host"
+
+    environment:
+      TZ: "Europe/Berlin"
+      WEBPASSWORD: "PASSWORD"
+      DNSMASQ_LISTENING: "all"
+      DNSMASQ_USER: "root"
+      # For Pi-hole v6, use this:
+      FTLCONF_webserver_port: "8083"
+      # For Pi-hole v5, keep this just in case:
+      WEB_PORT: "8083"
+
+    volumes:
+      - ./etc-pihole:/etc/pihole
+      - ./etc-dnsmasq.d:/etc/dnsmasq.d
+
+    cap_add:
+      - NET_ADMIN
