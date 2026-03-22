@@ -256,3 +256,17 @@ set no 1.1.1.1 or 9.9.9.9 as alternative dns so no way arround the pihole exists
 Heimnetz → Netzwerk → Netzwerkeinstellungen → IP-Adressen → IPv4-Einstellungen
 
 DHCP-Server aktivieren
+
+#Homeassistent
+
+cd homeassitent
+
+docker compose up -d
+
+Traedfri ikea gateway is connected via lan should set fixed ip and kan be integrated in the gui
+
+Tasmota for energy measurement basically can alo be added with ip and shows its values
+but so far i was not able to integrate it so that homeassistant undertands it as enrgy meter.
+
+Next get a SONOFF Zigbee 3.0 & Thread Dongle...
+
