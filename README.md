@@ -233,7 +233,7 @@ docker pot forwarding was not working for me
 cd pihole
 
 nano docker-compose.yml
-#change PW
+#change PW!
 
 sudo ufw allow 53/tcp
 sudo ufw allow 53/udp
@@ -257,7 +257,7 @@ Heimnetz → Netzwerk → Netzwerkeinstellungen → IP-Adressen → IPv4-Einstel
 
 DHCP-Server aktivieren
 
-#Homeassistent
+# Homeassistent
 
 cd homeassitent
 
@@ -270,7 +270,7 @@ but so far i was not able to integrate it so that homeassistant undertands it as
 
 Next get a SONOFF Zigbee 3.0 & Thread Dongle...
 
-#Portainer
+# Portainer
 
 To orchestrate all these docker container
 
@@ -280,7 +280,7 @@ docker compose up -d
 
 enabled port 9000 to enable app access without https cert. You need to generate a api key for the app
 
-#Netdata
+# Netdata
 
 cd netdata
 
