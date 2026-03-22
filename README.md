@@ -280,5 +280,11 @@ docker compose up -d
 
 enabled port 9000 to enable app access without https cert. You need to generate a api key for the app
 
+#Netdata
 
+cd netdata
+
+docker compose up -d
+
+Stoped in portainer. Just started if needed.
 
