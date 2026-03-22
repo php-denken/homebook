@@ -11,4 +11,5 @@ services:
       - ./portainer_data:/data
     ports:
       - 9443:9443
+      - 9000:9000 #For app usage
       - 8000:8000
