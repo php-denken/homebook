@@ -259,7 +259,7 @@ DHCP-Server aktivieren
 
 # Homeassistent
 
-cd homeassitent
+cd homeassistent
 
 docker compose up -d
 
