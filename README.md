@@ -270,3 +270,15 @@ but so far i was not able to integrate it so that homeassistant undertands it as
 
 Next get a SONOFF Zigbee 3.0 & Thread Dongle...
 
+#Portainer
+
+To orchestrate all these docker container
+
+cd portainer
+
+docker compose up -d
+
+enabled port 9000 to enable app access without https cert. You need to generate a api key for the app
+
+
+
